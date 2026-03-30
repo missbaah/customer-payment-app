@@ -1,16 +1,81 @@
-# React + Vite
+# Customer Payments Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A frontend web application for managing and viewing vendor payment records. Built with React and Vite.
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+This application allows shop vendors to view, filter, and inspect customer payment records fetched from a live API. Key features include:
 
-## React Compiler
+- Paginated payments table (12 per page on desktop, 5 on mobile)
+- Date range filtering via Start Date and End Date
+- Payment detail modal with full transaction information
+- Responsive layout — card view on mobile, table view on desktop
+- Loading and error states throughout
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+- React
+- Vite
+- Vanilla CSS
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or higher recommended)
+- npm
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone <your-repo-url>
+cd <project-folder>
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Start the development server:
+
+```bash
+npm run dev
+```
+
+4. Open your browser at `http://localhost:5173`
+
+## Project Structure
+
+```
+src/
+├── api/
+│   ├── get-payments.js         # Fetches paginated payments list
+│   └── get-payment-details.js  # Fetches single payment by ID
+├── components/
+│   ├── table.jsx               # Payments table with pagination
+│   ├── modal.jsx               # Payment detail modal
+│   ├── loading.jsx             # Loading spinner
+│   └── DetailRow.jsx           # Reusable label/value row for modal
+├── utils/
+│   ├── formatDate.js           # Date formatting utility
+│   └── useIsMobile.js          # Custom hook for responsive logic
+├── App.jsx
+└── App.css
+```
+
+## API
+
+| Endpoint            | Description                                                                   |
+| ------------------- | ----------------------------------------------------------------------------- |
+| `GET /Payments`     | Returns all payments. Accepts optional `StartDate` and `EndDate` query params |
+| `GET /Payments/:id` | Returns details for a single payment by ID                                    |
+
+## Known Issues
+
+- The modal width on tablet (`60%`) may feel narrow on some screen sizes — this can be adjusted in the `.modal-content` media query.
+- The sidebar is hidden on mobile and tablet. There is currently no alternative navigation for smaller screens.
+- No empty state is shown when the date filter returns zero results — the table renders blank.

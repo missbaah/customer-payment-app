@@ -4,7 +4,7 @@ A frontend web application for managing and viewing vendor payment records. Buil
 
 ## Overview
 
-This application allows shop vendors to view, filter, and inspect customer payment records fetched from a live API. Key features include:
+Key features include:
 
 - Paginated payments table (12 per page on desktop, 5 on mobile)
 - Date range filtering via Start Date and End Date
@@ -17,6 +17,10 @@ This application allows shop vendors to view, filter, and inspect customer payme
 - React
 - Vite
 - Vanilla CSS
+
+## Live Url
+
+[Customer Payment App](https://missbaah.github.io/customer-payment-app/)
 
 ## Getting Started
 

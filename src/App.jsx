@@ -3,15 +3,15 @@ import { Table } from "./components/table";
 import { useEffect, useState } from "react";
 import { getPayments } from "./api/get-payments";
 import Loading from "./components/loading";
+import { Filters } from "./components/filters";
 
 function App() {
   const [payments, setPayments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [commitedStartDate, setCommitedStartDate] = useState(startDate);
-  const [commitedEndDate, setCommitedEndDate] = useState(endDate);
+  const [commitedStartDate, setCommitedStartDate] = useState("");
+  const [commitedEndDate, setCommitedEndDate] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   // fetch payments data on component mount
   useEffect(() => {
@@ -33,6 +33,11 @@ function App() {
 
     fetchData();
   }, [commitedStartDate, commitedEndDate]);
+
+  // filter payments based on search term
+  const filteredPayments = payments.filter((payment) =>
+    payment.Customer.toLowerCase().includes(searchTerm),
+  );
 
   return (
     <>
@@ -67,41 +72,18 @@ function App() {
               Shows all received payments
             </p>
           </section>
-          <div className="date-filters">
-            <div className="date-input">
-              <label htmlFor="start-date">Start Date </label>
-              <input
-                type="date"
-                id="start-date"
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
-              />
-            </div>
-            <div className="date-input">
-              <label htmlFor="end-date">End Date </label>
-              <input
-                type="date"
-                id="end-date"
-                value={endDate}
-                onChange={(e) => setEndDate(e.target.value)}
-              />
-            </div>
-            <button
-              onClick={() => {
-                setCommitedStartDate(startDate);
-                setCommitedEndDate(endDate);
-              }}
-            >
-              Apply
-            </button>
-          </div>
+          <Filters
+            setCommitedStartDate={setCommitedStartDate}
+            setCommitedEndDate={setCommitedEndDate}
+            setSearchTerm={setSearchTerm}
+          />
 
           {loading ? (
             <Loading />
           ) : error ? (
             <p>Error: {error}</p>
           ) : (
-            <Table payments={payments} />
+            <Table payments={filteredPayments} />
           )}
         </div>
       </div>

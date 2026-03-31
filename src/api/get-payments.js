@@ -6,9 +6,7 @@ export const getPayments = async ({ startDate, endDate }) => {
   if (endDate) queryParams.append("endDate", endDate);
 
   try {
-    const response = await fetch(
-      `https://spes.pscgh.com:442/sales-api/api/Payments?${queryParams}`,
-    );
+    const response = await fetch(`/api/Payments?${queryParams}`);
 
     if (!response.ok) {
       throw new Error(

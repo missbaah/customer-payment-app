@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-// component for filters - date range and search
 export const Filters = ({
   setCommitedStartDate,
   setCommitedEndDate,
@@ -8,30 +7,45 @@ export const Filters = ({
 }) => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
+
+  const handleApply = () => {
+    setCommitedStartDate(startDate);
+    setCommitedEndDate(endDate);
+    setIsPanelOpen(false);
+  };
+
+  const handleClear = () => {
+    setStartDate("");
+    setEndDate("");
+    setCommitedStartDate("");
+    setCommitedEndDate("");
+  };
 
   return (
     <div className="filters">
-      {/* search filters by customer name */}
-      <div className="search-filter">
-        <input
-          type="text"
-          placeholder="Search by customer name"
-          onChange={(e) => {
-            const searchTerm = e.target.value.toLowerCase();
-            setSearchTerm(searchTerm);
-          }}
-        />
+      <div className="filters-top">
+        <div className="search-filter">
+          <input
+            type="text"
+            placeholder="Search by customer name"
+            onChange={(e) => setSearchTerm(e.target.value.toLowerCase())}
+          />
+        </div>
+        <button
+          className="filter-toggle-btn"
+          onClick={() => setIsPanelOpen((prev) => !prev)}
+        >
+          {isPanelOpen ? "✕" : "⚙ Filter"}
+        </button>
       </div>
 
-      {/* applies date filters */}
-      <div className="date-filters">
+      {/* Always visible on desktop, toggle on mobile */}
+      <div
+        className={`date-filters ${isPanelOpen ? "date-filters--open" : ""}`}
+      >
         <div className="date-input">
-          <label
-            htmlFor="start-date"
-            style={{ fontSize: "12px", color: "#64748b" }}
-          >
-            Start Date{" "}
-          </label>
+          <label htmlFor="start-date">Start Date </label>
           <input
             type="date"
             id="start-date"
@@ -40,12 +54,7 @@ export const Filters = ({
           />
         </div>
         <div className="date-input">
-          <label
-            htmlFor="end-date"
-            style={{ fontSize: "12px", color: "#64748b" }}
-          >
-            End Date{" "}
-          </label>
+          <label htmlFor="end-date">End Date </label>
           <input
             type="date"
             id="end-date"
@@ -53,14 +62,12 @@ export const Filters = ({
             onChange={(e) => setEndDate(e.target.value)}
           />
         </div>
-        <button
-          onClick={() => {
-            setCommitedStartDate(startDate);
-            setCommitedEndDate(endDate);
-          }}
-        >
-          Apply
-        </button>
+        <div className="date-actions">
+          <button className="clear-btn" onClick={handleClear}>
+            Clear
+          </button>
+          <button onClick={handleApply}>Apply</button>
+        </div>
       </div>
     </div>
   );

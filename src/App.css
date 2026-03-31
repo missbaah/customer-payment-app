@@ -62,16 +62,45 @@ th {
 
 .filters {
   display: flex;
-  gap: 20px;
-  align-items: end;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.filters-top {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.filters-top .search-filter {
+  flex: 1;
+}
+
+.filter-toggle-btn {
+  display: none; /* hidden on desktop */
+  white-space: nowrap;
 }
 
 .date-filters {
   display: flex;
-  gap: 20px;
-  align-items: center;
-  justify-content: end;
+  align-items: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.date-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.clear-btn {
+  background-color: #f1f5f9;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+}
+
+.clear-btn:hover {
+  background-color: #e2e8f0;
 }
 
 input {
@@ -169,6 +198,11 @@ input[type="text"] {
   color: #64748b;
 }
 
+label {
+  font-size: 14px;
+  color: #64748b;
+}
+
 @media (max-width: 768px) {
   .app-container {
     height: auto;
@@ -241,15 +275,27 @@ input[type="text"] {
     margin-right: 12px;
   }
 
-  .filters {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  .filter-toggle-btn {
+    display: block; /* show on mobile */
   }
 
   .date-filters {
-    align-items: flex-start;
-    gap: 12px;
+    display: none; /* hidden by default on mobile */
     flex-direction: column;
+    align-items: stretch;
+    background: #f8fafc;
+    border: 1px solid #ebeff5;
+    border-radius: 8px;
+    padding: 16px;
+  }
+
+  .date-filters--open {
+    display: flex; /* shown when toggled */
+  }
+
+  .date-actions {
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 4px;
   }
 }

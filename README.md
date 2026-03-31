@@ -8,6 +8,7 @@ Key features include:
 
 - Paginated payments table (12 per page on desktop, 5 on mobile)
 - Date range filtering via Start Date and End Date
+- Customer name search filter
 - Payment detail modal with full transaction information
 - Responsive layout — card view on mobile, table view on desktop
 - Loading and error states throughout
@@ -18,9 +19,9 @@ Key features include:
 - Vite
 - Vanilla CSS
 
-## Live Url
+## Live URL
 
-[Customer Payment App](https://missbaah.github.io/customer-payment-app/)
+[Customer Payment App](https://customer-payment-app.vercel.app/)
 
 ## Getting Started
 
@@ -34,8 +35,8 @@ Key features include:
 1. Clone the repository:
 
 ```bash
-git clone <your-repo-url>
-cd <project-folder>
+git clone https://github.com/missbaah/customer-payment-app.git
+cd customer-payment-app
 ```
 
 2. Install dependencies:
@@ -63,7 +64,8 @@ src/
 │   ├── table.jsx               # Payments table with pagination
 │   ├── modal.jsx               # Payment detail modal
 │   ├── loading.jsx             # Loading spinner
-│   └── DetailRow.jsx           # Reusable label/value row for modal
+│   ├── filters.jsx             # Filters table by customer name & dates
+│   └── detailrow.jsx           # Reusable label/value row for modal
 ├── utils/
 │   ├── formatDate.js           # Date formatting utility
 │   └── useIsMobile.js          # Custom hook for responsive logic
@@ -72,6 +74,8 @@ src/
 ```
 
 ## API
+
+Base URL: `https://spes.pscgh.com:442/sales-api/api`
 
 | Endpoint            | Description                                                                   |
 | ------------------- | ----------------------------------------------------------------------------- |
@@ -82,4 +86,4 @@ src/
 
 - The modal width on tablet (`60%`) may feel narrow on some screen sizes — this can be adjusted in the `.modal-content` media query.
 - The sidebar is hidden on mobile and tablet. There is currently no alternative navigation for smaller screens.
-- No empty state is shown when the date filter returns zero results — the table renders blank.
+- No empty state is shown when the date filter or search returns zero results — the table renders blank.

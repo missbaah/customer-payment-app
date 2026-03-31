@@ -26,7 +26,12 @@ export const Filters = ({
       {/* applies date filters */}
       <div className="date-filters">
         <div className="date-input">
-          <label htmlFor="start-date">Start Date </label>
+          <label
+            htmlFor="start-date"
+            style={{ fontSize: "12px", color: "#64748b" }}
+          >
+            Start Date{" "}
+          </label>
           <input
             type="date"
             id="start-date"
@@ -35,7 +40,12 @@ export const Filters = ({
           />
         </div>
         <div className="date-input">
-          <label htmlFor="end-date">End Date </label>
+          <label
+            htmlFor="end-date"
+            style={{ fontSize: "12px", color: "#64748b" }}
+          >
+            End Date{" "}
+          </label>
           <input
             type="date"
             id="end-date"

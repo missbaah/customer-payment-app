@@ -78,6 +78,7 @@ input {
   padding: 6px 12px;
   border: 1px solid #ebeff5;
   border-radius: 12px;
+  width: 100%;
 }
 
 input[type="text"] {
@@ -181,7 +182,8 @@ input[type="text"] {
   }
 
   .main-content {
-    padding: 16px;
+    width: 100%;
+    padding: 14px;
   }
 
   .modal-content {
@@ -243,11 +245,12 @@ input[type="text"] {
   .filters {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    align-items: flex-start;
   }
 
   .date-filters {
-    align-items: end;
+    align-items: flex-start;
     gap: 12px;
+    flex-direction: column;
   }
 }

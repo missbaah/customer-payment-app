@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://spes.pscgh.com:442/sales-api/api/:path*"
+    }
+  ]
+}

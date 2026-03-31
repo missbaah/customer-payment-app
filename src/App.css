@@ -239,4 +239,15 @@ input[type="text"] {
     flex-shrink: 0;
     margin-right: 12px;
   }
+
+  .filters {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .date-filters {
+    align-items: end;
+    gap: 12px;
+  }
 }
